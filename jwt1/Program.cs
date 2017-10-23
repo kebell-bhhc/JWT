@@ -25,6 +25,12 @@ namespace jwt1
             {
                 Subject = new ClaimsIdentity(new List<Claim>()
                     {
+                        // These are required for bhhc gateway
+                        new Claim(JwtRegisteredClaimNames.Sub, "johndoe"),      // this is the same as ClaimTypes.NameIdentifier 
+                        new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
+
+                        // These are optional other values
+
                         new Claim(ClaimTypes.NameIdentifier, "johndoe@example.com"),
                         new Claim(ClaimTypes.Role, "Administrator"),
                         new Claim(ClaimTypes.Role, "SuperUser"),
